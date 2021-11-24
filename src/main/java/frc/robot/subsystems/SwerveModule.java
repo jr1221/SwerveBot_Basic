@@ -100,7 +100,8 @@ public class SwerveModule {
         m_turningPIDController.calculate(m_turningEncoder.get(), state.angle.getRadians());
 
     // Calculate the turning motor output from the turning PID controller.
-    m_driveMotor.set(state.speedMetersPerSecond); // TODO: see driveOutput PID controller, which is drive motor
+ // ORIGINAL:   m_driveMotor.set(driveOutput);
+    m_driveMotor.setSpeed(state.speedMetersPerSecond); // TODO: see driveOutput PID controller, which is drive motor
     m_turningMotor.set(turnOutput);
   }
 
