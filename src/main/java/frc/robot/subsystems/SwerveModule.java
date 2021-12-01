@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.SwerveModuleState;
@@ -18,8 +19,8 @@ public class SwerveModule {
 
   private final Encoder m_turningEncoder;
 
- // private final PIDController m_drivePIDController =
-  //    new PIDController(ModuleConstants.kPModuleDriveController, 0, 0);
+  private final PIDController m_drivePIDController =
+      new PIDController(ModuleConstants.kPModuleDriveController, 0, 0);
 
   // Using a TrapezoidProfile PIDController to allow for smooth turning
   private final ProfiledPIDController m_turningPIDController =
@@ -80,6 +81,14 @@ public class SwerveModule {
 /*  public SwerveModuleState getState() {
     return new SwerveModuleState(m_driveEncoder.getRate(), new Rotation2d(m_turningEncoder.get()));
   } */
+  
+  public double returnWheelPowerWheelSpeed(double wheelPower) {
+    // TODO - Change this, it's not the actual radius.
+    double wheelRadius = 5.4;
+    // v = radius * power
+    double wheelSpeed = wheelRadius * wheelPower;
+    return wheelSpeed;
+  }
 
   /**
    * Sets the desired state for the module.
@@ -90,10 +99,11 @@ public class SwerveModule {
     // Optimize the reference state to avoid spinning further than 90 degrees
     SwerveModuleState state =
         SwerveModuleState.optimize(desiredState, new Rotation2d(m_turningEncoder.get()));
+       double wheelspeed = returnWheelPowerWheelSpeed(m_driveMotor.get());
 
     // Calculate the drive output from the drive PID controller.
- //   final double driveOutput =
-  //      m_drivePIDController.calculate(m_driveEncoder.getRate(), state.speedMetersPerSecond);
+    final double driveOutput =
+        m_drivePIDController.calculate(wheelspeed, state.speedMetersPerSecond);
 
     // Calculate the turning motor output from the turning PID controller.
     final var turnOutput =
