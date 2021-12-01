@@ -76,6 +76,14 @@ public class SwerveModule {
     return new SwerveModuleState(m_driveEncoder.getRate(), new Rotation2d(m_turningEncoder.get()));
   }
 
+  public double returnWheelPowerWheelSpeed(double wheelPower) {
+    // TODO - Change this, it's not the actual radius.
+    double wheelRadius = 5.4;
+    // v = radius * power
+    double wheelSpeed = wheelRadius * wheelPower;
+    return wheelSpeed;
+  }
+
   /**
    * Sets the desired state for the module.
    *
@@ -86,9 +94,10 @@ public class SwerveModule {
     SwerveModuleState state =
         SwerveModuleState.optimize(desiredState, new Rotation2d(m_turningEncoder.get()));
 
+       double wheelspeed = returnWheelPowerWheelSpeed(m_driveMotor.get());
     // Calculate the drive output from the drive PID controller.
     final double driveOutput =
-        m_drivePIDController.calculate(m_driveEncoder.getRate(), state.speedMetersPerSecond);
+        m_drivePIDController.calculate(wheelspeed, state.speedMetersPerSecond);
 
     final double driveFeedforward = m_driveFeedforward.calculate(state.speedMetersPerSecond);
 
