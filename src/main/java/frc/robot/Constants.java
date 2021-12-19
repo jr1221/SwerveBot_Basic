@@ -53,17 +53,16 @@ public final class Constants {
     public static final boolean kFrontRightDriveInvert = false;
     public static final boolean kRearRightDriveInvert = false;
 
-    public static final double wheelDistFromCenter = 13.5;
-
-    public static final double kWheelRadius = 5.4;
-
     public static final double kTrackWidth = 0.5;
     // Distance between centers of right and left wheels on robot
     public static final double kWheelBase = 0.7;
     // Distance between front and back wheels on robot
     public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
         new Translation2d(kWheelBase / 2, kTrackWidth / 2), new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
-        new Translation2d(-kWheelBase / 2, kTrackWidth / 2), new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
+        new Translation2d(-kWheelBase / 2, kTrackWidth / 2), new Translation2d(-kWheelBase / 2, -kTrackWidth / 2)); // FR,
+                                                                                                                    // BR,
+                                                                                                                    // FL,
+                                                                                                                    // BR
 
     public static final boolean kGyroReversed = false;
 
@@ -75,11 +74,8 @@ public final class Constants {
     public static final double kMaxModuleAngularSpeedRadiansPerSecond = 2 * Math.PI;
     public static final double kMaxModuleAngularAccelerationRadiansPerSecondSquared = 2 * Math.PI;
 
-    public static final int kEncoderCPR = 414;
+    private static final int kEncoderCPR = 414;
     public static final double kWheelDiameterMeters = 0.095;
-    public static final double kDriveEncoderDistancePerPulse =
-        // Assumes the encoders are directly mounted on the wheel shafts
-        (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
 
     public static final double kTurningEncoderDistancePerPulse =
         // Assumes the encoders are on a 1:1 reduction with the module shaft.
@@ -100,8 +96,8 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
-    public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
+    private static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
+    private static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
     // Constraint for the motion profilied robot angle controller
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(

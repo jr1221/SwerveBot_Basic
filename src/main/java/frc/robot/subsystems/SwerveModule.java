@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
-import frc.robot.Constants;
 import frc.robot.Constants.ModuleConstants;
 
 public class SwerveModule {
@@ -70,7 +69,7 @@ public class SwerveModule {
 
   public double returnWheelPowerWheelSpeed(double wheelPower) {
 
-    double wheelRadius = Constants.ModuleConstants.kWheelDiameterMeters / 2;
+    double wheelRadius = ModuleConstants.kWheelDiameterMeters / 2;
 
     // v = radius * power
     double wheelSpeed = wheelRadius * wheelPower;

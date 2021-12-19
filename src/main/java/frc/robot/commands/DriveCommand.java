@@ -21,10 +21,10 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void execute() {
-        m_driveSubsystem.drive(m_rXboxController.getY(GenericHID.Hand.kLeft),0, // ForWARD
-           //     m_rXboxController.getX(GenericHID.Hand.kLeft), // SIDE
+        m_driveSubsystem.drive(m_rXboxController.getY(GenericHID.Hand.kLeft), // ForWARD
+                m_rXboxController.getX(GenericHID.Hand.kLeft), // SIDE
                 m_rXboxController.getX(GenericHID.Hand.kRight) // TURN
-                );
+        );
         // m_driveSubsystem.drive(0, 0, 0.001, false);
     }
 }
