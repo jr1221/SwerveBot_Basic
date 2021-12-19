@@ -89,7 +89,10 @@ public final class Constants {
     public static final double kModuleTurningI = 0.3;
     public static final double kModuleTurningD = 0;
 
-    public static final double kPModuleDriveController = 1;
+    public static final double kModuleDriveP = 1;
+    public static final double kModuleDriveI = 0;
+    public static final double kModuleDriveD = 0;
+
   }
 
   public static final class OIConstants {
@@ -97,8 +100,6 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3.52;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 1;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
